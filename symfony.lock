@@ -1,6 +1,6 @@
 {
     "composer/package-versions-deprecated": {
-        "version": "1.11.99"
+        "version": "1.11.99.1"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -23,8 +23,11 @@
     "doctrine/common": {
         "version": "3.0.2"
     },
+    "doctrine/data-fixtures": {
+        "version": "1.4.4"
+    },
     "doctrine/dbal": {
-        "version": "2.12.0"
+        "version": "2.12.1"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -32,13 +35,25 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "2.0",
-            "ref": "a9f2463b9f73efe74482f831f03a204a41328555"
+            "ref": "368794356c1fb634e58b38ad2addb36933f2e73e"
         },
         "files": [
             "./config/packages/doctrine.yaml",
             "./config/packages/prod/doctrine.yaml",
             "./src/Entity/.gitignore",
             "./src/Repository/.gitignore"
+        ]
+    },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "e5b542d4ef47d8a003c91beb35650c76907f7e53"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -79,10 +94,10 @@
         "version": "1.1.1"
     },
     "egulias/email-validator": {
-        "version": "2.1.23"
+        "version": "2.1.24"
     },
     "laminas/laminas-code": {
-        "version": "3.4.1"
+        "version": "3.5.0"
     },
     "laminas/laminas-eventmanager": {
         "version": "3.3.0"
@@ -97,7 +112,7 @@
         "version": "v4.10.2"
     },
     "ocramius/proxy-manager": {
-        "version": "2.9.1"
+        "version": "2.10.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -461,7 +476,7 @@
         ]
     },
     "symfony/twig-pack": {
-        "version": "v1.0.2"
+        "version": "v1.0.1"
     },
     "symfony/validator": {
         "version": "4.3",
@@ -498,6 +513,15 @@
             "./config/packages/test/web_profiler.yaml",
             "./config/routes/dev/web_profiler.yaml"
         ]
+    },
+    "symfony/web-server-bundle": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
+        }
     },
     "symfony/yaml": {
         "version": "v5.1.8"
