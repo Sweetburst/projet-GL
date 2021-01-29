@@ -78,6 +78,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
+    "dsiddharth2/php-zxing": {
+        "version": "1.0.3"
+    },
     "egulias/email-validator": {
         "version": "2.1.25"
     },

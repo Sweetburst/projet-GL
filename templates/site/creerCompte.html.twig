@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block title %} creer Compte{% endblock %}
+{% block stylesheets %}
+    {{  parent() }}
+    <style>
+        @media (max-width: 767px) {
+            .hidden-xs {
+                display: none !important;
+            }
+            @media (max-width: @screen-xs) {
+                body{font-size: 10px;}
+            }
+
+            @media (max-width: @screen-sm) {
+                body{font-size: 14px;}
+            }
+
+
+            h5{
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+ <body>
+     <div class="container-fluid">
+         <div class="row justify-content-center">
+
+             <div class="col-6 overflow-hidden hidden-xs">
+                 <img src="https://via.placeholder.com/750x600.png" >
+             </div>
+
+             <div class="col-4 align-items-center align-content-center align-self-center " style="background-color:#507cc0;margin:4px" >
+
+                 <div class="header" >
+                     <h3>Se connecter </h3>
+                 </div>
+
+                 <form method="post" action="" id="formRegister">
+                     <div class="form-group has-danger">
+                         <div class="row mb-4">
+                             <div class="col-md-6">
+                                 <label class="form-control-label">Nom</label>
+                                 <input class="form-control " type="text" name="nom" value="" id="nomRegistre">
+                                 <div id="feedNom" class="invalid-feedback"></div>
+                             </div>
+
+                             <div class="col-md-6">
+                                 <label class="form-control-label">Prenom</label>
+                                 <input class="form-control " type="text" name="prenom" value="" id="prenomRegistre">
+                                 <div id="feedPrenom" class="invalid-feedback"></div>
+                             </div>
+                         </div>
+                     </div>
+                 <div class="form-group has-danger">
+                     <label class="form-control-label" for="emailRegister">Email</label>
+                     <input class="form-control " type="email" name="email" value="" id="emailRegister">
+                     <div id="feedEmail" class="invalid-feedback"></div>
+                 </div>
+                 <div class="form-group has-danger">
+                     <label class="form-control-label" for="passRegister">Password</label>
+                     <input class="form-control " type="password" name="password_1" id="passRegister">
+                     <div id="feedPassRegister" class="invalid-feedback"></div>
+                 </div>
+                 <div class="form-group has-danger">
+                     <label class="form-control-label" for="passConfirm">Confirm password</label>
+                     <input class="form-control " type="password" name="password_2" id="passConfirm">
+                     <div id="feedPassConfrm" class="invalid-feedback"></div>
+                 </div>
+                 <div class="form-group has-danger">
+                     <label class="form-control-label" for="numeroTelephone">Numero de telephone</label>
+                     <input class="form-control " type="text" name="telephone" value="" id="numeroTelephone">
+                     <div id="feedNumeroTelephone" class="invalid-feedback"></div>
+                 </div>
+                 <div class="form-group has-danger">
+                     <button id="btn_register" type="submit" class="btn btn-success" name="reg_user"  style="background-color:#5F9EA0 " >Créer un compte</button>
+                 </div>
+                 <p>
+                     Deja Inscrit? <a href="">S'identifier</a>
+                 </p>
+
+             </form>
+
+             </div>
+         </div>
+     </div>
+ </body>
+
+{% endblock %}

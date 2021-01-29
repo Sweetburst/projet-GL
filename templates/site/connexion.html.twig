@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block title %} connexion{% endblock %}
+{% block stylesheets %}
+    {{  parent() }}
+    <style>
+        @media (max-width: 767px) {
+            .hidden-xs {
+                display: none !important;
+            }
+            @media (max-width: @screen-xs) {
+                body{font-size: 10px;}
+            }
+
+            @media (max-width: @screen-sm) {
+                body{font-size: 14px;}
+            }
+
+
+            h5{
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+ <body>
+     <div class="container-fluid">
+         <div class="row justify-content-center">
+
+             <div class="col-6 overflow-hidden hidden-xs">
+                 <img src="https://via.placeholder.com/750x600.png"  alt="image allergie">
+             </div>
+
+             <div class="col-4 align-items-center align-content-center align-self-center  " style="margin:4px" >
+
+                 <div class="header" >
+                     <h3>Se connecter </h3>
+                 </div>
+                 <form method="post" action="" id="formLogin" >
+
+                     <div class="form-group has-danger">
+                         <label class="form-control-label" for="username">Identifiant</label>
+                         <input type="text" class="form-control " name="username" id="username">
+                         <div id="feedUsername" class="invalid-feedback"></div>
+
+                     </div>
+                     <div class="form-group has-danger">
+                         <label class="form-control-label" for="password">Mot de pass</label>
+                         <input type="password" class="form-control " name="password" id="pass">
+                         <div id="feedPass" class="invalid-feedback">mot de pass ne doit pas etre vide</div>
+                     </div>
+
+                     <div class="input-form">
+                         <button type="submit" class="btn btn-primary" id="btn_login" name="connect" value="connecter" style="
+                            background-color:#31bfb1 " >Connecter</button>
+                         <button id="tempVar" style="visibility: hidden" value="123"></button>
+                     </div>
+
+                     <br>
+                     <p>
+                         Non Enregistre? <a href="Register" >cree un compte </a>
+                     </p>
+                     <>
+                 </form>
+             </div>
+         </div>
+     </div>
+ </body>
+{% endblock %}
