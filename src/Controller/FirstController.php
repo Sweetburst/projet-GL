@@ -5,12 +5,16 @@ namespace App\Controller;
 
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use PHPZxing\PHPZxingDecoder;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use PHPZxing\PHPZxingDecoder;
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\RegistrationType;
+
 
 class FirstController extends AbstractController
 {
@@ -79,6 +83,19 @@ class FirstController extends AbstractController
         return $this->render("site/creerCompte.html.twig");
     }
 
+    /**
+     * @Route("/editUser", name="editUser")
+     */
+    public function edit_user(){
+        return $this->render("site/editUser.html.twig");
+    }
+
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function manageUser(){
+        return $this->render("site/accueil.html.twig");
+    }
 
 
 }
