@@ -10,29 +10,17 @@ use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use PHPZxing\PHPZxingDecoder;
+//use PHPZxing\PHPZxingDecoder;
+use TarfinLabs\ZbarPhp\Exceptions\InvalidFormat;
+use TarfinLabs\ZbarPhp\Exceptions\UnableToOpen;
+use TarfinLabs\ZbarPhp\Zbar;
+use TarfinLabs\ZbarPhp;
+use Khanamiryan\QrCodeTests;
+use Zxing;
 
 class FirstController extends AbstractController
 {
-    /**
-     * @Route("/test",name="test")
-     */
-    public function test(){
-
-  /* Code barcode zxing not working
-      $decoder= new PHPZxingDecoder();
-        $decoder->setJavaPath('"D:/Program Files/Java/jdk-12.0.2/bin/java.exe"');
-        $decodedData    = $decoder->decode('D:/isen/M2 Bac+5/project/img bar/banane.jpeg');
-        print_r($decodedData);
-        dump($decodedData);
-        $tmpfilePath='D:/isen/M2 Bac+5/project/img bar/banane.jpeg';
-        $decoder = new \PHPZxing\PHPZxingDecoder();
-        // Set java path with double quote '"path/to/java/exe"'
-        $decoder->setJavaPath("C:\Program Files (x86)\Common Files\Oracle\Java\javapath\java.exe" );
-        $data = $decoder->decode('D:/isen/M2 Bac+5/project/img bar/banane.jpeg');
-        dump($data);*/
-        return $this->render("base.html.twig");
-    }
+    
     /**
      * @Route("/connect",name="connection")
      */
@@ -79,6 +67,14 @@ class FirstController extends AbstractController
         return $this->render("site/creerCompte.html.twig");
     }
 
+    /**
+     * @Route("/demo",name="demoPage")
+     */
+    public function BarcodeDemoPage(){
+
+    
+        return $this->render("site/demo.html.twig");
+    }
 
 
 }

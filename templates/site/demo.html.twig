@@ -1,0 +1,52 @@
+﻿{% extends 'base.html.twig' %}
+{% block title %}Demo
+{% endblock %}
+{% block javascripts %}
+	<!-- Javascript file-->
+	<script type="text/javascript" src="{{ asset('JS/filereader.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('JS/webcodecamjs.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('JS/qrcodelib.js') }}"></script>
+	{# <script type="text/javascript" src="{{ asset('JS/demo.js') }}"></script> #}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Demo</h1>
+		<br>
+		<div>
+			<h3>scanner votre produit</h3>
+			<input
+			type="button" id='webcam' value='camera' onclick="decodeCam();">
+			{# button to scan/decode the barcode of the image #}
+			<input type="button" id='decode' value='Scanner le fichier choisit' onclick="decodeLocalImage('');">
+		</div>
+		{# div conteant notre image #}
+		<div>
+			<canvas with="320" height="240"></canvas>
+		</div>
+		<div id='resultat'></div>
+	</div>
+	<script type="text/javascript">
+		var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
+var arg = {
+resultFunction: function (result) {
+var aChild = document.createElement('li');
+aChild[txt] = result.format + ': ' + result.code;
+document.querySelector('#resultat').appendChild(aChild);
+}
+};
+var decoder = new WebCodeCamJS("canvas").init(arg);
+function decodeLocalImage() {
+if (dec1) {
+dec1.stop();
+}
+decoder.decodeLocalImage();
+}
+// webcam
+var dec1;
+function decodeCam() {
+dec1 = new WebCodeCamJS("canvas").init(arg).play();
+}
+	</script>
+
+{% endblock %}
