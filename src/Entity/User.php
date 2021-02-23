@@ -2,13 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
+ * @UniqueEntity(
+ *      fields = {"email"},
+ *      message = "L'adresse mail est déjà utilisée. Essayez une autre."
+ * )
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -29,13 +37,20 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire au minimum 8 caractères")
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Ces mots de passe ne correspondent pas. Veuillez réessayer.")
+     */
+    private $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -121,5 +136,29 @@ class User
     {
         $this->password = $password;
         return $this;
+    }
+
+    public function getConfirmPassword():?string
+    {
+        return $this->confirm_password;
+    }
+
+    public function setConfirmPassword(string $confirm_password): self
+    {
+        $this->confirm_password = $confirm_password;
+        return $this;
+    }
+
+    public function getUserName():?string
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials(){}
+
+    public function getSalt(){}
+
+    public function getRoles(){
+        return['ROLE_USER'];
     }
 }

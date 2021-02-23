@@ -5,11 +5,12 @@ namespace App\Controller;
 
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use PHPZxing\PHPZxingDecoder;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+<<<<<<< HEAD
 //use PHPZxing\PHPZxingDecoder;
 use TarfinLabs\ZbarPhp\Exceptions\InvalidFormat;
 use TarfinLabs\ZbarPhp\Exceptions\UnableToOpen;
@@ -17,6 +18,13 @@ use TarfinLabs\ZbarPhp\Zbar;
 use TarfinLabs\ZbarPhp;
 use Khanamiryan\QrCodeTests;
 use Zxing;
+=======
+
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\RegistrationType;
+
+>>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
 
 class FirstController extends AbstractController
 {
@@ -68,12 +76,26 @@ class FirstController extends AbstractController
     }
 
     /**
+<<<<<<< HEAD
      * @Route("/demo",name="demoPage")
      */
     public function BarcodeDemoPage(){
 
     
         return $this->render("site/demo.html.twig");
+=======
+     * @Route("/editUser", name="editUser")
+     */
+    public function edit_user(){
+        return $this->render("site/editUser.html.twig");
+    }
+
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function manageUser(){
+        return $this->render("site/accueil.html.twig");
+>>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
     }
 
 

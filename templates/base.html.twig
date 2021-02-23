@@ -252,6 +252,7 @@
 </head>
 <body>
 
+{% block top_navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a href="#" class="navbar-brand">Allergic<b>FoodScanner</b></a>
     <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse"
@@ -289,10 +290,10 @@
         </div>
         <div class="nav-item dropdown">
             <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle sign-up-btn"
-               aria-expanded="false">Crée compte</a>
+               aria-expanded="false">Créez votre compte</a>
             <div class="dropdown-menu action-form">
                 <form action="/examples/actions/confirmation.php" method="post">
-                    <p class="hint-text">Fill in this form to create your account!</p>
+                    <p class="hint-text">Remplissez le formulaire afin de créer votre compte !</p>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Username" required="required">
                     </div>
@@ -303,8 +304,8 @@
                         <input type="password" class="form-control" placeholder="Confirm Password" required="required">
                     </div>
                     <div class="form-group">
-                        <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a
-                                    href="#">Terms &amp; Conditions</a></label>
+                        <label class="form-check-label"><input type="checkbox" required="required"> j'accepte les  <a
+                                    href="#">termes  &amp; conditions</a></label>
                     </div>
                     <input type="submit" class="btn btn-primary btn-block" value="Sign up">
                 </form>
@@ -313,7 +314,9 @@
     </div>
     </div>
 </nav>
+{% endblock %}
 
+<<<<<<< HEAD
 {% block body %}
     <label for="avatar">Choose a profile picture:</label>
 
@@ -321,6 +324,10 @@
            id="avatar" name="avatar"
            accept="image/png, image/jpeg">
 {% endblock %}
+=======
+
+{% block footer %}
+>>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
 <footer class="text-center text-lg-left" style="background-color: #33cabb">
     <!-- Grid container -->
     <div class="container p-4">
@@ -328,7 +335,7 @@
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Telechargement</h5>
+                <h5 class="text-uppercase">Téléchargement</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
@@ -350,13 +357,13 @@
 
                 <ul class="list-unstyled mb-0">
                     <li>
-                        <a href="#!" class="text-dark">nos valeur</a>
+                        <a href="#!" class="text-dark">Nos valeur</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">l'equipe</a>
+                        <a href="#!" class="text-dark">Notre équipe</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Mention legal</a>
+                        <a href="#!" class="text-dark">Mentions legales</a>
                     </li>
                 </ul>
             </div>
@@ -371,7 +378,7 @@
                         <a href="#!" class="text-dark">Faq</a>
                     </li>
                     <li>
-                        <a href="#!" class="text-dark">Contactez nous</a>
+                        <a href="#!" class="text-dark">Contactez-nous</a>
                     </li>
                 </ul>
             </div>
@@ -388,6 +395,7 @@
     </div>
     <!-- Copyright -->
 </footer>
+{% endblock %}
 
 <!-- Javascript file-->
 <script src="{{ asset('JS/quagga.min.js') }}"></script>
