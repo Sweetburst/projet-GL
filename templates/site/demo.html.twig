@@ -1,5 +1,6 @@
 ﻿{% extends 'base.html.twig' %}
-{% block title %}Demo
+{% block title %} 
+	Demo 
 {% endblock %}
 {% block javascripts %}
 	<!-- Javascript file-->
@@ -10,6 +11,7 @@
 {% endblock %}
 
 {% block body %}
+
 	<div class="container">
 		<h1>Demo</h1>
 		<br>
@@ -24,15 +26,47 @@
 		<div>
 			<canvas with="320" height="240"></canvas>
 		</div>
-		<div id='resultat'></div>
+		<div class="container" style="height:400px"><img src={{data.product.image_url}} style="height: 80%;
+   width: 80%;"></div>
+		
+		{# div a conteannt information sur le produit scanner #}
+		<div>
+			<p>score nutrition :{{data.product.nutrition_grades}}</p>
+			<p>Nom du produit:	{{data.product.product_name}}</p>
+			<p>ingredient: {{data.product.ingredients_text}}</p>
+			<p>allergene result: {{allergene}}</p>
+			<P>details des allergene: profil 1 est allergic a :1,2,3....
+																				  profil2 lui convient le produit:...
+			</p>
+
+		</div>
+		{{dump(data)}}
+
+		{# a ecrire en javascript #}
+		 <a id="aHidenThatAutoClick"> Voir resultat </a>
+		{# <div id='resultat'>
+							<form action={{path("demoPage")}} method='GET' style="visibility:hidden">
+					<input size="15" type="text" id="barcodeNumber" name="bar" value="312">
+							</form>	
+		</div> #}
 	</div>
+
+
+	{# Javascript #}
 	<script type="text/javascript">
 		var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
 var arg = {
 resultFunction: function (result) {
-var aChild = document.createElement('li');
-aChild[txt] = result.format + ': ' + result.code;
-document.querySelector('#resultat').appendChild(aChild);
+		var aChild = document.createElement('li');
+		aChild[txt] = result.format + ': ' + result.code;
+		//document.querySelector('#resultat').appendChild(aChild);
+		var ahiden=document.getElementById("aHidenThatAutoClick");
+		ahiden.value="lord of thee ring";
+		//var url = Routing.generate('demoPage1', {'barcodeNumber' : result.code});
+		//let href=" path('demoPage1',{'barcodeNumber':"+result.code+"} )";
+		let href="/demo/"+result.code;
+		$("#aHidenThatAutoClick").attr("href",href);//path pour la page du resultat
+	 	window.location.href = $('#aHidenThatAutoClick').attr('href');//il se click automatiquement apres le scan et transfer to page result.
 }
 };
 var decoder = new WebCodeCamJS("canvas").init(arg);
