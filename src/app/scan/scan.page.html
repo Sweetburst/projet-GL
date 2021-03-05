@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>scan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <qrcode [qrdata]="'Votre chaîne de caractère QR code'" [size]="256" [level]="'M'"></qrcode> -->
+
+  <ion-button expand="block" (click)="scanCode()" >
+    <ion-icon slot="start" name="qr-scanner"></ion-icon>
+    Scanner un QR Code
+  </ion-button>
+
+  <div *ngIf="!showCamera">
+    <ion-item *ngIf="textScanned" lines="none" (click)="openLink(textScanned)">
+      <ion-label>
+        <p>Texte du QR Code</p>
+        <h2><b>{{ textScanned }}</b></h2>
+      </ion-label>
+      <ion-icon slot="end" name="open"></ion-icon>
+    </ion-item>
+    <ion-button expand="block" (click)="scanCode()" >
+      <ion-icon slot="start" name="qr-scanner"></ion-icon>
+      Scanner un QR Code
+    </ion-button>
+  </div>
+
+</ion-content>
+
