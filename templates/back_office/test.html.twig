@@ -1,0 +1,90 @@
+﻿{% extends 'baseBackOffice.html.twig' %}
+
+{% block title %}Hello BackOfficeController!
+{% endblock %}
+
+{% block body %}
+
+	<main class="app-content">
+		<div class="app-title">
+			<div>
+				<h1>
+					<i class="fa fa-dashboard"></i>
+					Acceuil Admin</h1>
+				<p>Page admin du backOffice</p>
+			</div>
+			<ul class="app-breadcrumb breadcrumb">
+				<li class="breadcrumb-item">
+					<i class="fa fa-home fa-lg"></i>
+				</li>
+				<li class="breadcrumb-item">
+					<a href="#">Acceuill</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6 col-lg-3">
+				<a href="">
+					<div class="widget-small primary coloured-icon">
+						<i class="icon fa fa-users fa-3x"></i>
+						<div class="info">
+							<h4>Utilisateur</h4>
+
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="">
+					<div class="widget-small info coloured-icon">
+						<i class="icon  fas fa-user-cog fa-3x"></i>
+						<div class="info">
+							<h4>Admin</h4>
+
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="">
+					<div class="widget-small warning coloured-icon">
+						<i class="icon fa fa-barcode fa-3x"></i>
+						<div class="info">
+							<h4>Scan</h4>
+
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="">
+					<div class="widget-small danger coloured-icon">
+						<i class="icon fas fa-allergies fa-3x"></i>
+						<div class="info">
+							<h4>Symptome</h4>
+
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="col-md-6 col-lg-3">
+				<a href="">
+					<div class="widget-small primary coloured-icon">
+						<i class="icon  fas fa-hand-holding-medical fa-3x"></i>
+						<div class="info">
+							<h4>traitement</h4>
+						</div>
+					</div>
+				</a>
+			</div>
+
+
+		</div>
+
+	</main>
+{% endblock %}

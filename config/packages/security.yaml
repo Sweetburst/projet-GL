@@ -5,22 +5,24 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
-        users_in_database:
+        in_database:
             entity:
-                class: App/Entity/User
-                property: email #propriété par laqelle on retrouve un utilisateur dans la bdd (identifiant unique)
+                class: App\Entity\User
+                property: email 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-            lazy: true
-            provider: users_in_database
+            # lazy: true
+
+            provider: in_database
 
             form_login:
                 login_path: security_login
                 check_path: security_login
+                default_target_path: back_office
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

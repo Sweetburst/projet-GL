@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" type="text/css" href="{{ asset('CSS/main.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('CSS/style.css') }}">
+			<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+			<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		{% endblock %}
+		{# <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> #}
+	</head>
+	<body class="app sidebar-mini  pace-done">
+
+		<div class="pace  pace-inactive">
+			<div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+				<div class="pace-progress-inner"></div>
+			</div>
+			<div class="pace-activity"></div>
+		</div>
+
+
+		<!-- Navbar-->
+		<header class="app-header">
+			<a class="app-header__logo" href="">AllergicFoodScanner</a>
+			<!-- Sidebar toggle button-->
+			<a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+			<!-- Navbar Right Menu-->
+			<ul
+				class="app-nav">
+				<!-- User Menu-->
+				<li class="dropdown">
+					<a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
+						<i class="fa fa-user fa-lg"></i>
+					</a>
+					<ul class="dropdown-menu settings-menu dropdown-menu-right">
+						<li>
+							<a class="dropdown-item" href="" i class="fa fa-cog fa-lg"></i>Settings
+						</li>
+					</a>
+				</li>
+				<li>
+					<a class="dropdown-item" href="" i class="fa fa-user fa-lg"></i>Profile
+				</li>
+			</a>
+		</li>
+		<li>
+			<a class="dropdown-item" href="">
+				<i class="fa fa-sign-out fa-lg"></i>
+				Logout</a>
+		</li>
+	</body>
+</html></ul></li></ul></header><!-- sideBar--><div class="app-sidebar__overlay" data-toggle="sidebar"></div><aside class="app-sidebar"><div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://i.pravatar.cc/50" alt="User Image"><div><p class="app-sidebar__user-name">Mohamad Sabbah</p><p class="app-sidebar__user-designation">Admin</p></div></div><ul class="app-menu"><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fa fa-dashboard"></i>
+<span class="app-menu__label">Acceuil</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fa fa-user "></i>
+<span class="app-menu__label">Utilisateur</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fa fa-user-plus "></i>
+<span class="app-menu__label">Admin</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fa fa-users "></i>
+<span class="app-menu__label">profile personnel</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fas fa-heartbeat"></i>
+<span class="app-menu__label">traitement</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fas fa-allergies"></i>
+<span class="app-menu__label">symptom</span></a></li><li><a class="app-menu__item" href="">
+<i class="app-menu__icon fa fa-barcode "></i>
+<span class="app-menu__label">Scan</span></a></li></ul></aside>{% block body %}{% endblock %}{% block javascripts %}{# FICHIER POUR LE BIEN FONCTIONEMENT DES ELEMENT DU DESIGN #}<script src="{{ asset('js/design.js')}}"></script><script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script><script src="{{ asset('js/popper.min.js') }}"></script><script src="{{ asset('js/bootstrap.min.js')}}"></script>{% endblock %}</body></html>

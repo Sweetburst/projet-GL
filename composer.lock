@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "5fa02556ad95a6f1a02d43a0259c576f",
-=======
     "content-hash": "ebeeec6095dcf898aaf6a97e7c5a5a6a",
->>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -5428,11 +5424,7 @@
         },
         {
             "name": "symfony/process",
-<<<<<<< HEAD
-            "version": "v5.2.2",
-=======
             "version": "v5.2.3",
->>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -5474,11 +5466,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-<<<<<<< HEAD
-                "source": "https://github.com/symfony/process/tree/v5.2.2"
-=======
                 "source": "https://github.com/symfony/process/tree/v5.2.3"
->>>>>>> 672842f16bddc2b838028f7925f13e0274ca6ec3
             },
             "funding": [
                 {

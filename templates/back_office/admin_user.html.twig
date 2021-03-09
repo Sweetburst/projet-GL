@@ -1,0 +1,153 @@
+﻿{% extends 'baseBackOffice.html.twig' %}
+
+{% block title %}
+	Back office Utilisateur
+{% endblock %}
+
+{% block body %}
+	<main class="app-content">
+
+		<div class="app-title">
+			<div>
+				<h1>
+					<i class="fa fa-th-list"></i>
+					Data Table</h1>
+				<p>Table affichage donne de voyageur dans chaque voyage
+				</p>
+			</div>
+			<ul class="app-breadcrumb breadcrumb side">
+				<li class="breadcrumb-item">
+					<i class="fa fa-home fa-lg"></i>
+				</li>
+				<li class="breadcrumb-item">Tables</li>
+				<li class="breadcrumb-item active">
+					<a href="#">Data Table</a>
+				</li>
+			</ul>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="tile">
+					<div class="tile-body">
+						<div class="table-responsive">
+							<table class="table table-hover table-bordered" id="sampleTable">
+								<thead>
+									<tr>
+										<th>identifiant Utilisateur</th>
+										<th>Mail</th>
+										<th>Nom</th>
+										<th>Prenom</th>
+										<th>nbProfile</th>
+										<th>scan le plus
+										</th>
+										<th>MODIFIER</th>
+										<th>SUPPRIMER</th>
+									</tr>
+								</thead>
+								<tbody>
+									{# {% set nb=1 %}
+																																																				                            {% for item in data %} #}
+									<tr>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="5" style="border:none" id="inIDVoyageur .nb.">
+											</label>
+										</td>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="mh@gmail.com" style="border:none" id="">
+											</label>
+										</td>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="mkl" style="border:none" id="">
+											</label>
+										</td>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="mnop" style="border:none" id="in">
+											</label>
+										</td>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="4" style="border:none" id="inBagageVoyageVoyageur nb ">
+											</label>
+										</td>
+										<td>
+											<P style="display: none"></P>
+											<label>
+												<input type="text" value="lindt chocolat" style="border:none" id="in">
+											</label>
+										</td>
+
+
+										<td>
+											<button class="btn-primary btn-modifier1" type="button" value="item.id_voyageur; item.numero_voyage ">
+												<i class="fa fa-fw fa-lg fa-check-circle"></i>modifier</button>
+										</td>
+										<td>
+											<button class="btn-danger" type="button" value="item.id_voyageur; item.numero_voyage ">
+												<i class="fa fa-fw fa-lg fa-check-circle"></i>Supprimer</button>
+										</td>
+
+									</tr>
+									{# {% endfor %} #}
+								</tbody>
+							</table>
+						</div>
+						<br>
+						<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouterVoyageur">
+							<i class="fa fa-fw fa-lg fa-check-circle"></i>ajouter</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	{{ dump()}}
+
+
+	<div id="modalAjouterVoyageur" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="background-color: #009688">
+					<h5 class="modal-title">Ajouter des information de voyageur pour un voyage specifique</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="md-form mb-5">
+						<label data-error="wrong" data-success="right" for="txtNumeroVoyagejVoyageur">numero du voyage</label>
+						<input type="text" id="txtNumeroVoyagejVoyageur" class="form-control validate">
+					</div>
+
+					<div class="md-form mb-5">
+						<label data-error="wrong" data-success="right" for="txtNumeroVoyageurjVoyageur">numero de voyageur</label>
+						<input type="text" id="txtNumeroVoyageurjVoyageur" class="form-control validate">
+					</div>
+
+					<div class="md-form mb-5">
+						<label data-error="wrong" data-success="right" for="txtBagagejVoyageur">bagage</label>
+						<input type="text" id="txtBagagejVoyageur" class="md-textarea form-control">
+					</div>
+
+					<div class="md-form mb-5">
+						<label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label>
+						<input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control">
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button id="btninsert" name="insert" value="insert" class="btn btn-primary" type="button">Ajouter</button>
+					<button class="btn btn-secondary" type="button" data-dismiss="modal" style="background-color:#6c757d">Annuller</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
