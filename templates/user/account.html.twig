@@ -1,0 +1,53 @@
+﻿{% extends "base.html.twig" %}
+
+{% block title %}
+	Compte
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="{{ asset('CSS/main.css') }}">
+
+{% endblock %}
+
+{% block body %}
+	<main class="app-content" style="margin:10px 10px 10px 10px">
+		<div class="row user">
+			<div class="col-md-12">
+				<div class="profile">
+					<div class="info"><img class="user-img" src="https://i.pravatar.cc/50">
+						<h4>John Doe</h4>
+						<p>Utilisateur Allerrgic</p>
+					</div>
+					<div class="cover-image"></div>
+				</div>
+			</div>
+			<div class="col-md-12" style="margin:20px 0px 0px 0px">
+				<div class="tab-pane fade active show" id="user-settings">
+					<div class="tile user-settings">
+						<h4 class="line-head">Parametre</h4>
+						{{ form_start(formUser) }}
+						{{ form_row(formUser.nom) }}
+						{{ form_row(formUser.prenom) }}
+						{{ form_row(formUser.email) }}
+						{{ form_row(formUser.numeroTelephone) }}
+
+						<button type="submit" class="btn btn-success">Enregistrer !</button>
+						{{form_end(formUser)}}
+					</div>
+				</div>
+
+				<div class="tab-pane fade active show" id="user-settings">
+					<div class="tile user-settings">
+						<h4 class="line-head">Mot Pass</h4>
+						{{ form_start(formUserMotPass) }}
+						{{ form_row(formUserMotPass.password) }}
+						{{ form_row(formUserMotPass.confirm_password) }}
+						<button type="submit" class="btn btn-success">Changer Mot De Pass !</button>
+						{{form_end(formUserMotPass)}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

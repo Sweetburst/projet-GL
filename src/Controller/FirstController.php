@@ -174,7 +174,7 @@ class FirstController extends AbstractController
 
     //controller pour page editProfile
     /**
-     * @Route("/edit",name="edit_profile")
+     * @Route("/edit",name="edit_profile2")
      */
     public function edit_user1(){
         return $this->render("site/profileEdit.html.twig");

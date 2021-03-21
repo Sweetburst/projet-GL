@@ -24,6 +24,9 @@ security:
                 check_path: security_login
                 default_target_path: back_office
 
+            logout:
+                path: security_logout
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 

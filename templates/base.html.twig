@@ -14,11 +14,10 @@
 		{% block javascripts %}{% endblock %}
 	</head>
 	<head>
-		<link rel="stylesheet" type="text/css" href="{{ asset('CSS/main.css') }}" >
-        {# <link rel="stylesheet" type="text/css" href="{{ asset('CSS/style.css') }}" > #}
+		<link rel="stylesheet" type="text/css" href="{{ asset('CSS/main.css') }}">
+		{# <link rel="stylesheet" type="text/css" href="{{ asset('CSS/style.css') }}" > #}
 		{# ajouter de mon ancien projet pour voir resultat les 2 lignes ci dessus#}
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Bootstrap Navbar Dropdown Login and Signup Form with Social Buttons</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -272,142 +271,100 @@ e.stopPropagation();
 
 		<div id="navbarCollapse" class="navbar-collapse justify-content-start collapse" style="">
 			<div class="navbar-nav ml-auto action-buttons">
-				<div class="nav-item dropdown">
-					<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-4" aria-expanded="false">Connexion</a>
-					<div class="dropdown-menu action-form">
-						<form action="/examples/actions/confirmation.php" method="post">
-							<p class="hint-text">Sign in with your social media account</p>
-							<div class="form-group social-btn clearfix">
-								<a href="#" class="btn btn-secondary facebook-btn float-left">
-									<i class="fa fa-facebook"></i>
-									Facebook</a>
-								<a href="#" class="btn btn-secondary twitter-btn float-right">
-									<i class="fa fa-twitter"></i>
-									Twitter</a>
-							</div>
-							<div class="or-seperator">
-								<b>or</b>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Username" required="required">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password" required="required">
-							</div>
-							<input type="submit" class="btn btn-primary btn-block" value="Login">
-							<div class="text-center mt-2">
-								<a href="#">Forgot Your password?</a>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="nav-item dropdown">
-					<a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle sign-up-btn" aria-expanded="false">Créez votre compte</a>
-					<div class="dropdown-menu action-form">
-						<form action="/examples/actions/confirmation.php" method="post">
-							<p class="hint-text">Remplissez le formulaire afin de créer votre compte !</p>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Username" required="required">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Password" required="required">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" placeholder="Confirm Password" required="required">
-							</div>
-							<div class="form-group">
-								<label class="form-check-label"><input type="checkbox" required="required">
-									j'accepte les
-									<a href="#">termes  &amp; conditions</a>
-								</label>
-							</div>
-							<input type="submit" class="btn btn-primary btn-block" value="Sign up">
-						</form>
-					</div>
+				{% if app.user %}
+					<div class="nav-item dropdown">
+						<a href="{{ path('security_logout') }}" class="btn btn-primary ">Logout</a>
+					{% else %}
+						<div class="nav-item dropdown">
+							<a href="{{ path('security_login') }}" class="nav-link mr-4">Connexion</a>
+
+						</div>
+						<div class="nav-item dropdown">
+							<a href="{{ path('security_registration') }}" class="btn btn-primary  sign-up-btn">Créez votre compte</a>
+						</div>
+					{% endif %}
+
 				</div>
 			</div>
-		</div>
-	</nav>
-{% endblock %}
+		</nav>
+	{% endblock %}
 
-{% block body %}
-	<label for="avatar">Choose a profile picture:</label>
+	{% block body %}
+		<label for="avatar">Choose a profile picture:</label>
 
-	<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-{% endblock %}
+		<input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
+	{% endblock %}
 
-{% block footer %}
-	<footer
-		class="text-center text-lg-left" style="background-color: #33cabb">
-		<!-- Grid container -->
-		<div
-			class="container p-4" style="width:100%">
-			<!--Grid row-->
+	{% block footer %}
+		<footer
+			class="text-center text-lg-left" style="background-color: #33cabb">
+			<!-- Grid container -->
 			<div
-				class="row">
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Téléchargement</h5>
+				class="container p-4" style="width:100%">
+				<!--Grid row-->
+				<div
+					class="row">
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase">Téléchargement</h5>
 
-					<ul class="list-unstyled mb-0">
-						<li>
-							<a href="#!" class="text-dark">Play Store</a>
-						</li>
-						<li>
-							<a href="#!" class="text-dark">App Store</a>
-						</li>
-						<li>
-							<a href="#!" class="text-dark">Apk</a>
-						</li>
-					</ul>
+						<ul class="list-unstyled mb-0">
+							<li>
+								<a href="#!" class="text-dark">Play Store</a>
+							</li>
+							<li>
+								<a href="#!" class="text-dark">App Store</a>
+							</li>
+							<li>
+								<a href="#!" class="text-dark">Apk</a>
+							</li>
+						</ul>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase">A propos de nous</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li>
+								<a href="#!" class="text-dark">Nos valeur</a>
+							</li>
+							<li>
+								<a href="#!" class="text-dark">Notre équipe</a>
+							</li>
+							<li>
+								<a href="#!" class="text-dark">Mentions legales</a>
+							</li>
+						</ul>
+					</div>
+					<!--Grid column-->
+
+					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+						<h5 class="text-uppercase">Support</h5>
+
+						<ul class="list-unstyled mb-0">
+							<li>
+								<a href="#!" class="text-dark">Faq</a>
+							</li>
+							<li>
+								<a href="#!" class="text-dark">Contactez-nous</a>
+							</li>
+						</ul>
+					</div>
+					<!--Grid column-->
 				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">A propos de nous</h5>
-
-					<ul class="list-unstyled mb-0">
-						<li>
-							<a href="#!" class="text-dark">Nos valeur</a>
-						</li>
-						<li>
-							<a href="#!" class="text-dark">Notre équipe</a>
-						</li>
-						<li>
-							<a href="#!" class="text-dark">Mentions legales</a>
-						</li>
-					</ul>
-				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-					<h5 class="text-uppercase">Support</h5>
-
-					<ul class="list-unstyled mb-0">
-						<li>
-							<a href="#!" class="text-dark">Faq</a>
-						</li>
-						<li>
-							<a href="#!" class="text-dark">Contactez-nous</a>
-						</li>
-					</ul>
-				</div>
-				<!--Grid column-->
+				<!--Grid row-->
 			</div>
-			<!--Grid row-->
-		</div>
-		<!-- Grid container -->
+			<!-- Grid container -->
 
-		<!-- Copyright -->
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-			© 2021 Copyright:
-			<a class="text-dark">ISEN BREST</a>
-		</div>
-		<!-- Copyright -->
-	</footer>
-{% endblock %}
-
-</body>
-</html>
+			<!-- Copyright -->
+			<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+				© 2021 Copyright:
+				<a class="text-dark">ISEN BREST</a>
+			</div>
+			<!-- Copyright -->
+		</footer>
+	{% endblock %}
+</body></body></html>

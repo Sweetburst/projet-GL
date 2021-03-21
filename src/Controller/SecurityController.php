@@ -30,6 +30,7 @@ class SecurityController extends AbstractController
 
             $hash = $encoder->encodePassword($user, $user->getPassword()); //hashage du mdp avec l'algo bcrypt CF fichier Config->Packages->security.yaml
             $user->setPassword($hash);
+            $user->setAdmin(FALSE);
             $manager->persist($user);
             $manager->flush();
 
@@ -41,8 +42,17 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/connexion", name="security_login",methods={"GET", "POST"})
+     * pour la connexion d'un compte utilisateur
      */
     public function login(){
         return $this->render('security/login.html.twig');
     }
+
+    /**
+     * @Route("/Deconnexion",name="security_logout")
+     */
+    public function Logout(){
+        //le composant security manage le logout automatiquement 
+    }
+
 }

@@ -1,0 +1,58 @@
+﻿{% extends "base.html.twig" %}
+
+{% block stylesheet %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	{# code where we have our principale page #}
+	<main class="app-content" style="margin:10px 10px 10px 10px">
+		<div class="row user">
+			<div class="col-md-12">
+				<div class="profile">
+					<div class="info"><img class="user-img" src="https://i.pravatar.cc/50">
+						<h4>{{user.prenom}}
+							{{user.nom}}</h4>
+						<p>
+							{% if user.admin==false %}
+								Utilisateur
+							{% else %}
+								Administrateur
+							{% endif %}
+						</p>
+						{# {{dump(user)}} #}
+					</div>
+					<div class="cover-image"></div>
+				</div>
+			</div>
+			<div class="col-md-12" style="margin:20px 0px 0px 0px">
+				<div class="tab-pane fade active show" id="user-settings">
+					<div class="tile user-settings">
+						<h4 class="line-head">Parametre</h4>
+						{{ form_start(formProfile) }}
+						{{form_row(formProfile.nom,{
+                            'attr':{
+                                'placeholder':"entrer le nom du profil"
+                            }
+                        })}}
+						{{form_row(formProfile.prenom)}}
+						{{form_row(formProfile.age)}}
+						{{form_row(formProfile.allergenes)}}
+						{{form_row(formProfile.allergenes2)}}
+						<button type="submit" class="btn btn-success">
+							{% if editMode==false %}
+								Creer profile
+							{% else %}
+								Enregistrer!
+							{% endif %}
+						</button>
+						{{form_end(formProfile)}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}
+{% block javascript %}
+	{{ parent() }}
+{% endblock %}

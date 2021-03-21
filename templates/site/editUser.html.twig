@@ -2,43 +2,45 @@
 {# TODO: Modifier le code avec le bon formulaire #}
 {% extends 'base.html.twig' %}
 {% form_theme formUser 'bootstrap_4_layout.html.twig' %}
-{% block title %} Modification informations {% endblock %}
-{% block stylesheets %}
-    {{  parent() }}
-    <style>
-        @media (max-width: 767px) {
-            .hidden-xs {
-                display: none !important;
-            }
-            @media (max-width: @screen-xs) {
-                body{font-size: 10px;}
-            }
+	{% block title %}
+Modification informations
+{% endblock %}
+	{% block stylesheets %}
+	{{  parent() }}
+		<style>
+@media(max-width: 767px) {
+	.hidden-xs {
+		display: none !important;
+	}
+	@media(max-width: @screen-xs) {
+		body {
+			font-size: 10px;
+		}
+	}
 
-            @media (max-width: @screen-sm) {
-                body{font-size: 14px;}
-            }
+	@media(max-width: @screen-sm) {
+		body {
+			font-size: 14px;
+		}
+	}
 
 
-            h5{
-                font-size: 1.4rem;
-            }
-        }
-    </style>
+	h5 {
+		font-size: 1.4rem;
+	}
+}
+</style>
 {% endblock %}
 
 
-{% block body %}
-    <h1>Modifiez vos informations</h1>
-    {{form_start(formUser)}}
-
-    {{form_row(formUser.Nom, {'attr':{'placeholder': "Nom"}})}}
-    {{form_row(formUser.Prenom, {'attr':{'placeholder': "Prénom"}})}}
-    {{form_row(formUser.Email, {'attr':{'placeholder': "Mail"}})}}
-    {{form_row(formUser.NumeroTelephone, {'attr':{'placeholder': "Numéro de téléphone"}})}}
-    {{form_row(formUser.Password, {'attr':{'placeholder': "x"}})}}
-
-
-    
-    <button type="submit" class="btn btn-success">Modifiez vos informations</button>
-    {{form_end(formUser)}}
+	{% block body %}<h1>
+	Modifiez vos informations
+	</h1>{{form_start(formUser)}}
+	{{form_row(formUser.Nom, {'attr':{'placeholder': "Nom"}})}}
+	{{form_row(formUser.Prenom, {'attr':{'placeholder': "Prénom"}})}}
+	{{form_row(formUser.Email, {'attr':{'placeholder': "Mail"}})}}
+	{{form_row(formUser.NumeroTelephone, {'attr':{'placeholder': "Numéro de téléphone"}}
+	)}}
+		<button type="submit" class="btn btn-success"> Modifiez vos informations</button>
+	{{form_end(formUser)}}
 {% endblock %}

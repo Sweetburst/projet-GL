@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -61,6 +63,21 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $admin;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $profils;
+
+    public function __construct()
+    {
+        $this->profils = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +176,52 @@ class User implements UserInterface
     public function getSalt(){}
 
     public function getRoles(){
-        return['ROLE_USER'];
+
+        if ($this->admin == true){
+            return['ROLE_ADMIN'];
+        }else{
+            return['ROLE_USER'];
+        }
+    }
+
+    public function getAdmin(): ?bool
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(bool $admin): self
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Profil[]
+     */
+    public function getProfils(): Collection
+    {
+        return $this->profils;
+    }
+
+    public function addProfil(Profil $profil): self
+    {
+        if (!$this->profils->contains($profil)) {
+            $this->profils[] = $profil;
+            $profil->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfil(Profil $profil): self
+    {
+        if ($this->profils->removeElement($profil)) {
+            // set the owning side to null (unless already changed)
+            if ($profil->getUser() === $this) {
+                $profil->setUser(null);
+            }
+        }
+        return $this;
     }
 }
