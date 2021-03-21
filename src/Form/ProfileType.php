@@ -19,25 +19,15 @@ class ProfileType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
-            ->add('allergenes',ChoiceType::class,[
-                'choices' => [
-                    'Apple' => 1,
-                    'Banana' => 2,
-                    'Durian' => 3,
-                ],
-            ])
             ->add('allergenes2',EntityType::class,[
                 'class' => Allergene::class,
                 'mapped' => false,
-                
-                
                 // 'query_builder' => function (AllergeneRepository $er) {
                 //     return $er->createQueryBuilder('u')
                 //         ->select('u.nom_allergene')
                 //         ->orderBy('u.nom_allergene', 'ASC')
                 //         ->distinct();
                 // },
-
                 'choice_label' => 'nom_allergene',
                 'multiple' => true,
                 

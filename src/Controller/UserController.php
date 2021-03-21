@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Profil;
+use App\Entity\Allergene;
+use App\Repository\AllergeneRepository;
 use App\Form\ProfileType;
 use App\Form\RegistrationType;
 use App\Form\UserChangePassType;
@@ -88,8 +90,8 @@ class UserController extends AbstractController
             $profile=new Profil();
         }
 
-        $allergene=['sucre','salt','lait'];
-
+        // $allergene=['sucre','salt','lait'];
+        
 
         //check if user is connected
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -98,22 +100,52 @@ class UserController extends AbstractController
         //create form that will work on adding new profile and handlerequest to get data from form and add them to our instance object of profile
         $form=$this->createForm(ProfileType::class, $profile);
         $form->handleRequest($requete);//analyse the http request
+
+        //initialisation du repository du allergene qui permettre de recupere inforamtion d'allergene
+        $repository = $this->getDoctrine()->getRepository(Allergene::class); 
+
+        //check if form is submitted and validated
         if( $form->isSubmitted() && $form->isValid() ){
+            dump($requete);
             //code after form is validated and submited
-            if(!$profile->getId()){   
-                $profile->setCreatedAt(new \DateTime());
-            }    
+            if(!$profile->getId()){ 
+                //si nouveau profile 
+                $tabAlllergene=[];//intialiser tableau vide qui va contenir id des allergene selectioner
+                //TODO changer nom du parametre allergene 2 plus tard
+                $profileReceivedAsArray=$requete->request->get('profile');//received from request
+                $tabAllergene=$profileReceivedAsArray['allergenes2'];//an array of allergene received from the form in request
+                for ($i=0;$i<count($tabAllergene);$i++){
+                    $profile->addAllergene($repository->find($tabAllergene[$i]));
+                } 
+                $profile->setCreatedAt(new \DateTime())
+                        ->setUser($user);
+                       // ->setAllergene
+            }  else {
+                $allergenes=$profile->getAllergenes();
+            }  
+           
             $manager->persist($profile);
             $manager->flush();    
-            return $this->redirectToRoute("user_profiles");
-
+            //return $this->redirectToRoute("user_profiles");
         }
+        
+        //voir qu'elle liste d'allergene a afficher
+        if(!$profile){
+            //cas en page de creation d'un profile
+            $allergenes = $repository->findAll();//liste de toute les allergene qu'on a dans notre base de donne
+        } else {
+            //cas en page de edit
+            $allergenes=$profile->getAllergenes();
+        }
+       
+        //dump($allergenes);
+
         //reponse avec editmode pour voir si on ait dans le cas de creation ou en etat de modification
         return $this->render("user/creerProfile.html.twig",[
             'user' => $user, 
             'formProfile' => $form->createView(),
-            'editMode' => $profile->getId()!== null
-            //'allergene'=> $allergene
+            'editMode' => $profile->getId()!== null,
+            'allergene'=> $allergenes
             
         ]);
     }

@@ -118,8 +118,10 @@ class FirstController extends AbstractController
     public function checkAllergene($allergene,$ingredients){
         $status=0;
         for($i=0;$i<count($ingredients);$i++){
-            if (strpos($ingredients[$i], $allergene) !== false){
-                $status=$status+1;
+            for($j=0;$j<count($allergene);$j++){
+                if (strpos($ingredients[$i], $allergene[$j]) !== false){
+                    $status=$status+1;
+                }
             }
         }
         if($status==0){
