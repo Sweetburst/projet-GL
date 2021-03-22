@@ -93,12 +93,13 @@ class UserController extends AbstractController
         // $allergene=['sucre','salt','lait'];
         
 
-        //check if user is connected
+        //check if user is connected if not redirected to connexion page
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         //get user information
         $user = $this->getUser();
         //create form that will work on adding new profile and handlerequest to get data from form and add them to our instance object of profile
         $form=$this->createForm(ProfileType::class, $profile);
+
         $form->handleRequest($requete);//analyse the http request
 
         //initialisation du repository du allergene qui permettre de recupere inforamtion d'allergene
@@ -112,10 +113,10 @@ class UserController extends AbstractController
                 //si nouveau profile 
                 $tabAlllergene=[];//intialiser tableau vide qui va contenir id des allergene selectioner
                 //TODO changer nom du parametre allergene 2 plus tard
-                $profileReceivedAsArray=$requete->request->get('profile');//received from request
+                $profileReceivedAsArray=$requete->request->get('profile');//received from request as associative array
                 $tabAllergene=$profileReceivedAsArray['allergenes2'];//an array of allergene received from the form in request
                 for ($i=0;$i<count($tabAllergene);$i++){
-                    $profile->addAllergene($repository->find($tabAllergene[$i]));
+                    $profile->addAllergene($repository->find($tabAllergene[$i]));//add selectioned array
                 } 
                 $profile->setCreatedAt(new \DateTime())
                         ->setUser($user);
@@ -139,14 +140,13 @@ class UserController extends AbstractController
         }
        
         //dump($allergenes);
-
+        //TODO maybe need to change allergene to json
         //reponse avec editmode pour voir si on ait dans le cas de creation ou en etat de modification
-        return $this->render("user/creerProfile.html.twig",[
+        return $this->render("user/creerEditProfile.html.twig",[
             'user' => $user, 
             'formProfile' => $form->createView(),
             'editMode' => $profile->getId()!== null,
             'allergene'=> $allergenes
-            
         ]);
     }
 
@@ -160,7 +160,7 @@ class UserController extends AbstractController
         //get user information
         $user = $this->getUser();
 
-        //TODO creer form pour changer mot de passer
+        //TODO creer form pour changer mot de passer ajout ancien mot de passe peut etre
 
         
         return $this->render("user/editPasword.html.twig",[

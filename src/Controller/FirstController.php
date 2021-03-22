@@ -137,7 +137,7 @@ class FirstController extends AbstractController
      */
     public function BarcodeDemoPage1($barcodeNumber){
        //check if barcodeNumber exist
-       //TODO voir si barccode entrer correctement 
+       //voir si barccode entrer correctement 
         if($barcodeNumber!=NULL){
             dump($barcodeNumber);
             
