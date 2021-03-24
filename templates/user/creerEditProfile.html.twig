@@ -37,12 +37,12 @@
                         })}}
 						{{form_row(formProfile.prenom)}}
 						{{form_row(formProfile.age)}}
-						{% if editMode==true  %}\
-							<select>
-								{% for item in allergene %}
-									<option value={{allergene.id}}>{{ allergene.nom_allergene }}</option>
-								{% endfor %}
-							</select>
+						{% if editMode==true  %}
+							{# <select>
+															{% for item in allergene %}
+																<option value={{allergene.id}}>{{ allergene.nom_allergene }}</option>
+															{% endfor %}
+														</select> #}
 						{% endif %}
 						{{form_row(formProfile.allergenes2)}}
 						<button type="submit" class="btn btn-success">

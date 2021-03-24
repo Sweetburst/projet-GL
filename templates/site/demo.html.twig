@@ -13,6 +13,7 @@
 {% block body %}
 
 	<div class="container">
+	
 		<h1>Demo</h1>
 		<br>
 		<div>
@@ -24,8 +25,9 @@
 		</div>
 		{# div conteant notre image #}
 		<div>
-			<canvas with="320" height="240"></canvas>
+			<canvas with="640" height="480"></canvas>
 		</div>
+	
 		<div class="container" style="height:400px"><img src={{data.product.image_url}} style="height: 80%;
    width: 80%;"></div>
 		
@@ -34,7 +36,7 @@
 			<p>score nutrition :{{data.product.nutrition_grades}}</p>
 			<p>Nom du produit:	{{data.product.product_name}}</p>
 			<p>ingredient: {{data.product.ingredients_text}}</p>
-			<p>allergene result: {{allergene}}</p>
+			{# <p>allergene result: {{allergene}}</p> #}
 			<P>details des allergene: profil 1 est allergic a :1,2,3....
 																				  profil2 lui convient le produit:...
 			</p>

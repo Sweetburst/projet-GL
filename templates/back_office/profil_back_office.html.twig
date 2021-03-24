@@ -38,14 +38,14 @@
 							<table class="table table-hover table-bordered" id="sampleTable">
 								<thead>
 									<tr>
-										<th>identifiant Utilisateur</th>
-										<th>Mail</th>
+										<th>identifiant Profile</th>
+										<th>Compte</th>
 										<th>Nom</th>
 										<th>Prenom</th>
-										<th>numeroTelephone</th>
+										<th>Age</th>
 										{# <th>admin</th> #}
-										<th>nbProfile</th>
-										{# <th>scan le plus</t> #}
+										<th>nbScan</th>
+										<th>nbAllergene</t> 
 										<th>MODIFIER</th>
 										<th>SUPPRIMER</th>
 									</tr>
@@ -65,7 +65,7 @@
 									</td>
 									<td>
 
-										{{form_widget(item.email,{
+										{{form_widget(item.user,{
 														'attr':{
 															'style':'border:none'
 														} 
@@ -97,7 +97,7 @@
 									<td>
 
 										<label>
-											{{form_widget(item.numeroTelephone,{
+											{{form_widget(item.age,{
 														'attr':{
 															'style':'border:none'
 														} 
@@ -114,10 +114,18 @@
 																																																													</td> #}
 										<td>
 											<label>
-										{{item.vars.value.profils.count}}
+										{{item.vars.value.scan.count}}
 											{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
 										</label>
 									</td>
+
+                                    <td>
+											<label>
+										{{item.vars.value.allergene.count}}
+											{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
+										</label>
+									</td>
+
 
 
 									<td>

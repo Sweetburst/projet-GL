@@ -99,16 +99,18 @@ class FirstController extends AbstractController
             for($i=0;$i<count($ingredients);$i++){
             $in=explode(":",$ingredients[$i]);
             $ingredients1[$i]=$in[1];
-            $allergene=$this->checkAllergene("milk",$ingredients1);
+           // $allergene=$this->checkAllergene("milk",$ingredients1);
             }
         }else{
-            $allergene="Desoler Pas d'information sur le produit pour l'analyser";
+        //    $allergene="Desoler Pas d'information sur le produit pour l'analyser";
         }
         //ingredients 1 have ingredient name without useless information 
         //check allergene 
       
-        return $this->render("site/demo.html.twig", 
-            [ 'data' => $result, 'allergene'=>$allergene]);
+        return $this->render("site/demo.html.twig",[
+            'data' => $result
+         //   'allergene'=>$allergene
+        ]);
 
     }
 
@@ -160,38 +162,9 @@ class FirstController extends AbstractController
 
 
 
-     /* 
-     * @Route("/editUser", name="editUser")
-     */
-    public function edit_user(){
-        return $this->render("site/editUser.html.twig");
-    }
-
-    /**
-     * @Route("/accueil", name="accueil")
-     */
-    public function manageUser(){
-        return $this->render("site/accueil.html.twig");
-    }
-
-    //controller pour page editProfile
-    /**
-     * @Route("/edit",name="edit_profile2")
-     */
-    public function edit_user1(){
-        return $this->render("site/profileEdit.html.twig");
-    }
-
-     //controller pour page editProfile
-    /**
-     * @Route("/profile",name="edit_profile")
-     */
-    public function profile(){
-        return $this->render("site/profileManagement.html.twig");
-    }
+    
 
 
-//TODO creer des test
 
 
 }

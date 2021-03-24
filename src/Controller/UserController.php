@@ -104,7 +104,7 @@ class UserController extends AbstractController
 
         //initialisation du repository du allergene qui permettre de recupere inforamtion d'allergene
         $repository = $this->getDoctrine()->getRepository(Allergene::class); 
-
+        dump($requete);
         //check if form is submitted and validated
         if( $form->isSubmitted() && $form->isValid() ){
             dump($requete);
@@ -140,7 +140,7 @@ class UserController extends AbstractController
         }
        
         //dump($allergenes);
-        //TODO maybe need to change allergene to json
+        //TODO maybe need to change allergene to json ithink i dont need not sure test it
         //reponse avec editmode pour voir si on ait dans le cas de creation ou en etat de modification
         return $this->render("user/creerEditProfile.html.twig",[
             'user' => $user, 
@@ -160,7 +160,7 @@ class UserController extends AbstractController
         //get user information
         $user = $this->getUser();
 
-        //TODO creer form pour changer mot de passer ajout ancien mot de passe peut etre
+        //TODO creer form pour changer mot de passer ajout ancien mot de passe peut etre last thing
 
         
         return $this->render("user/editPasword.html.twig",[
