@@ -1,0 +1,150 @@
+﻿{% extends 'base.html.twig' %}
+{% block title %}
+	Manage Profile
+{% endblock %}
+{% block body %}
+	<main class="app-content" style="margin-left:0px">
+		<div class="row" id="content-profile">
+       {% for item in forms %}
+        
+            <div class="col-md-6">
+            
+				<div class="tile" style="overflow: auto; margin-right:10px">
+                
+					<h3 class="tile-title" style="display:inline-block;float:left">Profil d'id<input
+											name='id' value={{item.vars.value.id}} style="border:none" readonly="readonly"></h3>
+					<h3 style="display:inline-block;float: right;">
+						<img src="https://i.pravatar.cc/50" style="display:inline-block;float: right">
+					</h3>
+                    
+					<table class="table">
+                    {{ form_start(item)}}
+                    <div style='display:none'>
+                    <input name='id' value={{item.vars.value.id}} style="border:none" readonly="readonly">
+                        {% do item.age.setRendered() %}
+                        {% do item.user.setRendered() %}
+                        {% do item.creeProfile.setRendered() %}
+                    </div>
+                    
+						<thead>
+							<tr>
+                                <th>id</th>
+								<th>nom</th>
+                                <th>prenom</th>
+								<th>allergene</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr></tr>
+							<tr>
+                                <td>
+                                    <input name='id' value={{item.vars.value.id}} style="border:none" readonly="readonly">
+                                </td>
+								<td>
+                                    {{form_widget(item.nom,{
+                                        'attr':{
+                                            'style':'border:none'
+                                            } 
+                                    })}}
+                                </td>
+								<td>
+                                    {{form_widget(item.prenom,{
+                                        'attr':{
+                                            'style':'border:none'
+                                        } 
+                                    })}}		
+								</td>
+                                <td>
+                                    {{form_widget(item.allergenes)}}
+                                </td>
+							</tr>
+						</tbody>
+					</table>
+                    <div class="modal-footer">
+                        {{form_widget(item.modifier,{
+                                                'attr':{
+                                                    'class':"btn-primary btn-modifier1",
+                                                    'label':'',
+                                                    
+                                                }
+                        })}}
+
+                        {{form_row(item.supprimer,{
+                                                'attr':{
+                                                    'class':'btn-danger',
+                                                    'style':"background-color:red;"
+                                                }
+                                            })}}
+                    </div>
+					{# <button class="btn btn-primary btn-accept1" name="accept1" data-toggle="modal" data-target="#modalGerer" type="button" value="">
+						modifier</button> #}
+				</div>
+			</div>
+            {{ form_end(item) }}
+        {% endfor %}
+			<br>
+			<button id="modalopen" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouterProfil">
+				<i class="fa fa-fw fa-lg fa-check-circle"></i>ajouter</button>
+		</main>
+
+
+
+{{form_start(formRegistration)}}
+{% do formRegistration.supprimer.setRendered() %}
+{% do formRegistration.modifier.setRendered() %}
+
+<div id="modalAjouterProfil" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header" style="background-color: #009688">
+			<h5 class="modal-title">creer un nouveau Utilisateur ou admin</h5>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+		</div>
+		<div
+			class="modal-body">
+			{# {{dump(formRegistration)}} #}
+			<div class="md-form mb-5">
+				{# <label data-error="wrong" data-success="right" for="txtNumeroVoyagejVoyageur">numero du voyage</label> #}
+				{# <input type="text" id="txtNumeroVoyagejVoyageur" class="form-control validate"> #}
+			{{form_row(formRegistration.nom)}}
+			</div>
+
+				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtNumeroVoyageurjVoyageur">numero de voyageur</label> #}
+				{# <input type="text" id="txtNumeroVoyageurjVoyageur" class="form-control validate">  #}
+			{{form_row(formRegistration.prenom)}}
+			</div>
+
+				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtBagagejVoyageur">bagage</label> #}
+				{# <input type="text" id="txtBagagejVoyageur" class="md-textarea form-control"> #}
+			{{form_row(formRegistration.user)}}
+			</div>
+
+				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
+				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
+			{{form_row(formRegistration.age)}}
+			</div>
+				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
+				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
+			{{form_row(formRegistration.allergenes)}}
+			</div><div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
+				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
+				{# {{form_row(formRegistration.confirm_password)}} #}
+			</div>
+		</div>
+		<div class="modal-footer">
+            {{form_widget(formRegistration.creeProfile,{
+                'attr':{
+                    'class':'btn-primary'
+                },
+                'label':'Creer Profile !'
+            })}}
+			{# <button id="btninsert" name="insert" value="Ajouter Profile !" class="btn btn-primary" type="submit">Ajouter Profile !</button> #}
+			<button id="modalclose" class="btn btn-secondary" type="button" data-dismiss="modal" style="background-color:#6c757d">Annuller</button>
+		</div>
+	</div>
+</div>
+{{form_end(formRegistration)}}</div>{% endblock %}
+
+

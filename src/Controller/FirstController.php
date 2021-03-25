@@ -6,13 +6,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 
+use App\Form\RegistrationType;
+use App\Form\GroupAllergeneType;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\RegistrationType;
 
 // 672842f16bddc2b838028f7925f13e0274ca6ec3
 
@@ -85,30 +86,31 @@ class FirstController extends AbstractController
            
             
         }
-        //recuperation des information du produit
-        $json = file_get_contents('https://fr.openfoodfacts.org/api/v0/product/3173990026484');//biscuit
-        //$json = file_get_contents('https://fr.openfoodfacts.org/api/v0/product/3347761000786');//banane cavendish
-        $result = json_decode($json);
-        dump($result);
-        //obtenir la liste des ingredients
-        $ingredients=$result->{'product'}->{'ingredients_hierarchy'};
-        //dump(count($ingredients));//debug comand
-        if(count($ingredients)>0){
-            //delete useless information about ingredient like en that mean english and keeo only ingredient name    
-            $ingredients1=[];
-            for($i=0;$i<count($ingredients);$i++){
-            $in=explode(":",$ingredients[$i]);
-            $ingredients1[$i]=$in[1];
-           // $allergene=$this->checkAllergene("milk",$ingredients1);
-            }
-        }else{
-        //    $allergene="Desoler Pas d'information sur le produit pour l'analyser";
-        }
+        // //recuperation des information du produit
+        // $json = file_get_contents('https://fr.openfoodfacts.org/api/v0/product/3173990026484');//biscuit
+        // //$json = file_get_contents('https://fr.openfoodfacts.org/api/v0/product/3347761000786');//banane cavendish
+        // $result = json_decode($json);
+        // dump($result);
+        // //obtenir la liste des ingredients
+        // $ingredients=$result->{'product'}->{'ingredients_hierarchy'};
+        // //dump(count($ingredients));//debug comand
+        // if(count($ingredients)>0){
+        //     //delete useless information about ingredient like en that mean english and keeo only ingredient name    
+        //     $ingredients1=[];
+        //     for($i=0;$i<count($ingredients);$i++){
+        //     $in=explode(":",$ingredients[$i]);
+        //     $ingredients1[$i]=$in[1];
+        //     $allergene=$this->checkAllergene("milk",$ingredients1);
+        //     }
+        // }else{
+        //     $allergene="Desoler Pas d'information sur le produit pour l'analyser";
+        // }
         //ingredients 1 have ingredient name without useless information 
         //check allergene 
-      
-        return $this->render("site/demo.html.twig",[
-            'data' => $result
+            
+        $form=$this->createForm(GroupAllergeneType::class);
+        return $this->render("site/scanner.html.twig",[
+            'forms' => $form->createView()
          //   'allergene'=>$allergene
         ]);
 
@@ -120,10 +122,8 @@ class FirstController extends AbstractController
     public function checkAllergene($allergene,$ingredients){
         $status=0;
         for($i=0;$i<count($ingredients);$i++){
-            for($j=0;$j<count($allergene);$j++){
-                if (strpos($ingredients[$i], $allergene[$j]) !== false){
+                if (strpos($ingredients[$i], $allergene) !== false){
                     $status=$status+1;
-                }
             }
         }
         if($status==0){
@@ -135,24 +135,46 @@ class FirstController extends AbstractController
     }
 
        /**
-     * @Route("/demo/{barcodeNumber}",name="demoPage1")
+     * @Route("/demo/{barcodeNumber}/",name="demoPage1")
      */
     public function BarcodeDemoPage1($barcodeNumber){
        //check if barcodeNumber exist
        //voir si barccode entrer correctement 
         if($barcodeNumber!=NULL){
             dump($barcodeNumber);
-            
             $json1 = file_get_contents('https://fr.openfoodfacts.org/api/v0/product/'.$barcodeNumber);
-            $result1 = json_decode($json1);
-           
+            $result = json_decode($json1);
+            dump($result);
+                //obtenir la liste des ingredients
+                if($result->{'status'}==0){
+                    return -1;
+                }
+            $ingredients=$result->{'product'}->{'ingredients_hierarchy'};
+            //dump(count($ingredients));//debug comand
+            if(count($ingredients)>0){
+                //delete useless information about ingredient like en that mean english and keeo only ingredient name    
+                $ingredients1=[];
+                for($i=0;$i<count($ingredients);$i++){
+                $in=explode(":",$ingredients[$i]);
+                $ingredients1[$i]=$in[1];
+                $allergene=$this->checkAllergene("milk",$ingredients1);
+                }
+            }else{
+                $allergene="Desoler Pas d'information sur le produit pour l'analyser";
+            }
             return $this->render("site/demo.html.twig", 
-            [ 'data' => $result1]);    
+            [ 'data' => $result,
+            'allergene'=>$allergene
+            ]);    
         }
-        
-        return $this->render("site/demo.html.twig", 
-            [ 'data' => $result1]);
+        return $this->render("site/demo.html.twig");
+    }
 
+    /**
+     * @Route("/avenir",name="aVenir")
+     */
+    public function Avenir(){
+        return $this->render("site/avenir.html.twig");
     }
 
 

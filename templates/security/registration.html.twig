@@ -1,88 +1,99 @@
 {% extends 'base.html.twig' %}
 {% form_theme formUser 'bootstrap_4_layout.html.twig' %}
-{% block title %} Inscription {% endblock %}
+{% block title %}
+	Inscription
+{% endblock %}
 {% block stylesheets %}
-    {{  parent() }}
-    <style>
-        @media (min-width: 767px){
-            .wrapper {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-gap: 10px;
-                grid-auto-rows: minmax(100px, auto);
-                }
-            
-            .one {
-                grid-column: 1;
-                grid-row: 1;
-                margin-left: 20px;
-            }
-            .two {
-                grid-column: 2;
-                grid-row: 1;
-                margin-right: 20px;
-            }
-        }
+	{{  parent() }}
+	<style>
+		@media(min-width: 767px) {
+			.wrapper {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				grid-gap: 10px;
+				grid-auto-rows: minmax(100px, auto);
+			}
 
-        @media (max-width: 767px) {
-            .hidden-xs {
-                display: none !important;
-            }
+			.one {
+				grid-column: 1;
+				grid-row: 1;
+				margin-left: 20px;
+			}
+			.two {
+				grid-column: 2;
+				grid-row: 1;
+				margin-right: 20px;
+			}
+		}
 
-            .wrapper {
-                display: grid;
-                grid-template-columns: 1;
-                grid-gap: 10px;
-                grid-auto-rows: minmax(2, 100px, auto);
-            }
-            .one {
-                grid-column: 1;
-                grid-row: 1;
-                margin-left: 10px;
-                margin-right: 10px;
+		@media(max-width: 767px) {
+			.hidden-xs {
+				display: none !important;
+			}
 
-            }
-            .two {
-                grid-column: 1;
-                grid-row: 2;
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            
-            @media (max-width: @screen-xs) {
-                body{font-size: 10px;}
-            }
+			.wrapper {
+				display: grid;
+				grid-template-columns: 1;
+				grid-gap: 10px;
+				grid-auto-rows: minmax(2, 100px, auto);
+			}
+			.one {
+				grid-column: 1;
+				grid-row: 1;
+				margin-left: 10px;
+				margin-right: 10px;
 
-            @media (max-width: @screen-sm) {
-                body{font-size: 14px;}
-            }
+			}
+			.two {
+				grid-column: 1;
+				grid-row: 2;
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+
+			@media(max-width: @screen-xs) {
+				body {
+					font-size: 10px;
+				}
+			}
+
+			@media(max-width: @screen-sm) {
+				body {
+					font-size: 14px;
+				}
+			}
 
 
-            h5{
-                font-size: 1.4rem;
-            }
-        }
+			h5 {
+				font-size: 1.4rem;
+			}
+		}
 
-        {# background-color: brown; #}
-        
-    </style>
+		{
+			# background-color: brown; #
+		}
+	</style>
 {% endblock %}
 
 
 {% block body %}
-    <div class="wrapper">
-        <div class="one">
-            <img src="https://via.placeholder.com/800x600.png" >
-        </div>
-        <div class="two">
-            {{ form_start(formUser) }}
-            {{ form_widget(formUser) }}
-            {# {{ form_row(formUser.Nom)}} #}
+	<div class="wrapper">
+		<div class="one">
+			<img src="https://via.placeholder.com/800x600.png">
+		</div>
+		<div class="two">
+			{{ form_start(formUser) }}
 
-            <button type="submit" class="btn btn-success">Inscription !</button>
-            {{ form_end(formUser)}}
-            <h3>Déja inscrit ? <a href="">Identifiez-vous !</a> </h3>
-        </div>
-    </div>
+			{# {{ form_row(formUser.Nom)}} #}
+			<div style='display:none'>
+				{% do formUser.btn_register.setRendered() %}
+			</div>
+			{{ form_widget(formUser) }}
+			<button type="submit" class="btn btn-success">Inscription !</button>
+			{{ form_end(formUser)}}
+			<h3>Déja inscrit ?
+				<a href={{path('security_login')}}>Identifiez-vous !</a>
+			</h3>
+		</div>
+	</div>
 {% endblock %}
-

@@ -56,18 +56,29 @@
 				Logout</a>
 		</li>
 	</body>
-</html></ul></li></ul></header><!-- sideBar--><div class="app-sidebar__overlay" data-toggle="sidebar"></div><aside class="app-sidebar"><div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://i.pravatar.cc/50" alt="User Image"><div><p class="app-sidebar__user-name">Mohamad Sabbah</p><p class="app-sidebar__user-designation">Admin</p></div></div><ul class="app-menu"><li><a class="app-menu__item" href="">
+</html></ul></li></ul></header><!-- sideBar--><div class="app-sidebar__overlay" data-toggle="sidebar"></div><aside class="app-sidebar"><div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://i.pravatar.cc/50" alt="User Image"><div><p class="app-sidebar__user-name">Mohamad Sabbah</p><p class="app-sidebar__user-designation">Admin</p></div></div><ul class="app-menu"><li>
+<a class="app-menu__item" href="{{path('back_office_test')}}">
 <i class="app-menu__icon fa fa-dashboard"></i>
-<span class="app-menu__label">Acceuil</span></a></li><li><a class="app-menu__item" href="">
+<span class="app-menu__label">Acceuil</span></a></li><li><a class="app-menu__item" href= {{path('back_office_user_or_admins',{'types':'users'})}}>
 <i class="app-menu__icon fa fa-user "></i>
-<span class="app-menu__label">Utilisateur</span></a></li><li><a class="app-menu__item" href="">
+<span class="app-menu__label">Utilisateur</span></a></li><li><a class="app-menu__item" href={{path('back_office_user_or_admins',{'types':'admins'})}}>
 <i class="app-menu__icon fa fa-user-plus "></i>
-<span class="app-menu__label">Admin</span></a></li><li><a class="app-menu__item" href="">
+<span class="app-menu__label">Admin</span></a></li><li><a class="app-menu__item" href={{path('back_office_profile')}}>
 <i class="app-menu__icon fa fa-users "></i>
-<span class="app-menu__label">profile personnel</span></a></li><li><a class="app-menu__item" href="">
-<i class="app-menu__icon fas fa-heartbeat"></i>
-<span class="app-menu__label">traitement</span></a></li><li><a class="app-menu__item" href="">
+<span class="app-menu__label">profile personnel</span></a></li><li><a class="app-menu__item" href={{path('back_office_allergene')}}>
+<i class="app-menu__icon fas fa-virus"></i>
+<span class="app-menu__label">Allergene</span></a></li><li>
+<a class="app-menu__item" href={{path('aVenir')}}>
+<i class="app-menu__icon fa fa-heartbeat "></i>
+<span class="app-menu__label">traitement</span></a></li><li><a class="app-menu__item" href={{path('aVenir')}}>
 <i class="app-menu__icon fas fa-allergies"></i>
-<span class="app-menu__label">symptom</span></a></li><li><a class="app-menu__item" href="">
+<span class="app-menu__label">symptom</span></a></li><li><a class="app-menu__item" href={{path('aVenir')}}>
 <i class="app-menu__icon fa fa-barcode "></i>
-<span class="app-menu__label">Scan</span></a></li></ul></aside>{% block body %}{% endblock %}{% block javascripts %}{# FICHIER POUR LE BIEN FONCTIONEMENT DES ELEMENT DU DESIGN #}<script src="{{ asset('js/design.js')}}"></script><script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script><script src="{{ asset('js/popper.min.js') }}"></script><script src="{{ asset('js/bootstrap.min.js')}}"></script>{% endblock %}</body></html>
+<span class="app-menu__label">
+Scan</span>
+</a>
+</li>
+</ul>
+</aside>
+{% block body %}
+{% endblock %}{% block javascripts %}{# FICHIER POUR LE BIEN FONCTIONEMENT DES ELEMENT DU DESIGN #}<script src="{{ asset('js/design.js')}}"></script><script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script><script src="{{ asset('js/popper.min.js') }}"></script><script src="{{ asset('js/bootstrap.min.js')}}"></script>{% endblock %}</body></html>

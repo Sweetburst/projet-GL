@@ -27,40 +27,23 @@
 		<div>
 			<canvas with="640" height="480"></canvas>
 		</div>
-
-		<div class="container" style="height:400px"><img src={{data.product.image_url}} style="height: 80%;
-			   width: 80%;"></div>
-
-		{# div a conteannt information sur le produit scanner #}
-		<div>
-			<p>score nutrition :{{data.product.nutrition_grades}}</p>
-			<p>Nom du produit:
-				{{data.product.product_name}}</p>
-			<p>ingredient:
-				{{data.product.ingredients_text}}</p>
-			<p>allergene result:
-				{% if allergene==1 %}ce produit contient d'allergene selectioner
-					{% else %}c prduit ne contient pas l'allergie !</p>
-					{% endif %}
-			</p>
-			<p>details des allergene: profil 1 est allergic a :1,2,3....
-																								  profil2 lui convient le produit:...
-			</p>
-
-		</div>
-		{# {{dump(data)}} #}
-
-		{# a ecrire en javascript #}
-		<a id="aHidenThatAutoClick">
-			Voir resultat
-		</a>
-		{# <div id='resultat'>
-									<form action={{path("demoPage")}} method='GET' style="visibility:hidden">
-							<input size="15" type="text" id="barcodeNumber" name="bar" value="312">
-									</form>	
-				</div> #}
 	</div>
 
+
+	<div>
+		<div class='container'>
+			{{form_start(forms)}}
+			<input name='id' value={{forms.vars.value.id}} style="border:none" readonly="readonly">
+			{{ form_widget(forms.Profils) }}
+			{{form_widget(forms.submit,{
+                         'attr':{
+                         	'class':"btn-primary btn-modifier1",
+                         	'label':'',                        
+                        }
+                        })}}
+				{{form_end(forms)}}
+			</div>
+	</div>
 
 	{# Javascript #}
 	<script type="text/javascript">

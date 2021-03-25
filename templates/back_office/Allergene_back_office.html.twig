@@ -12,7 +12,7 @@
 				<h1>
 					<i class="fa fa-th-list"></i>
 					Table de donner</h1>
-				<p>Table affichage donne des Profiles
+				<p>Table affichage donne des Allergene
 				</p>
 			</div>
 			<ul class="app-breadcrumb breadcrumb side">
@@ -33,14 +33,12 @@
 							<table class="table table-hover table-bordered" id="sampleTable">
 								<thead>
 									<tr>
-										<th>identifiant Profile</th>
-										<th>Compte</th>
-										<th>Nom</th>
-										<th>Prenom</th>
-										<th>Age</th>
+										<th>identifiant Allergene</th>
+										<th>Nom Allergene</th>
+										<th>Description</th>
+										<th>createdAt</th>
+										<th>nb Profile</th>
 										{# <th>admin</th> #}
-										<th>nbScan</th>
-										<th>nbAllergene</th>
 										<th>MODIFIER</th>
 										<th>SUPPRIMER</th>
 									</tr>
@@ -51,75 +49,54 @@
 							{% for item in forms %}
 								{{ form_start(item) }}
 								<div style="display:none ">
-									{{ form_widget(item.creeProfile) }}
+									{{ form_widget(item.creeNewAllergene) }}
 								</div>
-								{# {% for user in users %} #}
+				
 								<tr>
 									<td>
 										<label>
 											<input
 											name='id' value={{item.vars.value.id}} style="border:none" readonly="readonly">
-										{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
+										
 										</label>
 									</td>
 									<td>
-
-										{{form_widget(item.user,{
+										{{form_widget(item.nom_allergene,{
 														'attr':{
 															'style':'border:none'
 														} 
-												})}}
-										{# <input type="text" value="{{user.id}}" style="border:none" id=""> #}
+										})}}
 									</td>
 									<td>
 
 										<label>
-											{{form_widget(item.nom,{
+											{{form_widget(item.description,{
 														'attr':{
 															'style':'border:none'
 														} 
-													})}}
-											{# <input type="text" value="{{user.email}}" style="border:none" id=""> #}
+											})}}
+										
 										</label>
 									</td>
 									<td>
 
 										<label>
-											{{form_widget(item.prenom,{
+											{{form_widget(item.createdAt,{
 														'attr':{
 															'style':'border:none'
 														} 
-													})}}
-											{# <input type="text" value="{{user.nom}}" style="border:none" id=""> #}
+											})}}
+										
 										</label>
 									</td>
-									<td>
-										<label>
-											{{form_widget(item.age,{
-														'attr':{
-															'style':'border:none'
-														} 
-													})}}
-											{# <input type="text" value="{{user.prenom}}" style="border:none" id="in"> #}
-										</label>
-									</td>
-
+				
 									<td>
 										<label>
 
-											{{item.vars.value.scans.count}}
-											{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
+											{{item.vars.value.profils.count}}
+										
 										</label>
 									</td>
-
-									<td>
-										<label>
-											{{form_widget(item.allergenes)}}
-										{# {{item.vars.value.allergene.count}} #}
-											{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
-										</label>
-									</td>
-
 
 									<td>
 										{{form_widget(item.modifier,{
@@ -128,22 +105,17 @@
 												'label':''
 											}
 										})}}
-									{#<button class="btn-primary btn-modifier1" type="submit" name="btn_modifier">#}
-										{# <i class="fa fa-fw fa-lg fa-check-circle"></i>modifier</button>  #}
+								
 									</td>
 									<td>
-										{# <button class="btn-danger" type="submit" id='btn_supprimer'>#}
-
 										{{form_row(item.supprimer,{
 											'attr':{
 												'class':'btn-danger',
 												'style':"background-color:red;"
 											}
 										})}}
-										{# <i class="fa fa-fw fa-lg fa-check-circle"></i></button>  #}
 									</td>
 								</tr>
-								{# {% endfor %} #}
 								{{ form_end(item) }}
 							{% endfor %}
 						</tbody>
@@ -151,7 +123,7 @@
 				</table>
 			</div>
 			<br>
-			<button id="modalopen" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouter">
+			<button id="modalopen" class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouterVoyageur">
 				<i class="fa fa-fw fa-lg fa-check-circle"></i>ajouter</button>
 		</div>
 	</div>
@@ -159,8 +131,9 @@
 {{form_start(formRegistration)}}
 {% do formRegistration.supprimer.setRendered() %}
 {% do formRegistration.modifier.setRendered() %}
+{% do formRegistration.createdAt.setRendered() %}
 
-<div id="modalAjouter" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div id="modalAjouterVoyageur" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
 		<div class="modal-header" style="background-color: #009688">
@@ -175,33 +148,16 @@
 			<div class="md-form mb-5">
 				{# <label data-error="wrong" data-success="right" for="txtNumeroVoyagejVoyageur">numero du voyage</label> #}
 				{# <input type="text" id="txtNumeroVoyagejVoyageur" class="form-control validate"> #}
-			{{form_row(formRegistration.nom)}}
+			{{form_row(formRegistration.nom_allergene)}}
 			</div>
 
 				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtNumeroVoyageurjVoyageur">numero de voyageur</label> #}
 				{# <input type="text" id="txtNumeroVoyageurjVoyageur" class="form-control validate">  #}
-			{{form_row(formRegistration.prenom)}}
-			</div>
-
-				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtBagagejVoyageur">bagage</label> #}
-				{# <input type="text" id="txtBagagejVoyageur" class="md-textarea form-control"> #}
-			{{form_row(formRegistration.user)}}
-			</div>
-
-				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
-				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
-			{{form_row(formRegistration.age)}}
-			</div>
-				<div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
-				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
-			{{form_row(formRegistration.allergenes)}}
-			</div><div class="md-form mb-5"> {# <label data-error="wrong" data-success="right" for="txtLieuRencontrejVoyageur">lieu de rencontre</label> #}
-				{# <input type="text" id="txtLieuRencontrejVoyageur" class="md-textarea form-control"> #}
-				{# {{form_row(formRegistration.confirm_password)}} #}
+			{{form_row(formRegistration.description)}}
 			</div>
 		</div>
 		<div class="modal-footer">
-            {{form_widget(formRegistration.creeProfile,{
+            {{form_widget(formRegistration.creeNewAllergene,{
                 'attr':{
                     'class':'btn-primary'
                 },
@@ -212,4 +168,6 @@
 		</div>
 	</div>
 </div>
-{{form_end(formRegistration)}}</div>{% endblock %}
+{{form_end(formRegistration)}}
+</div>
+{% endblock %}

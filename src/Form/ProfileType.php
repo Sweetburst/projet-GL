@@ -30,6 +30,7 @@ class ProfileType extends AbstractType
                 // },
                 'choice_label' => 'nom_allergene',
                 'multiple' => true,
+                'expanded' => true 
                 
             ])
             //still has user and createdAt

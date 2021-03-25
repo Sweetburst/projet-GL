@@ -59,7 +59,8 @@
 								<tr>
 									<td>
 										<label>
-											{{item.vars.value.id}}
+											<input name='id' value={{item.vars.value.id}} style="border:none" readonly="readonly">
+											{# {{item.vars.value.id}} #}
 											{# <input type="text" value="{{user.profils.count}}" style="border:none" id="inBagageVoyageVoyageur nb "> #}
 										</label>
 									</td>
@@ -150,13 +151,13 @@
 				</table>
 			</div>
 			<br>
-			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouterVoyageur">
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalAjouterUtilisateur">
 				<i class="fa fa-fw fa-lg fa-check-circle"></i>ajouter</button>
 		</div>
 	</div>
 </div></div></main>{{ dump()}}
 {{form_start(formRegistration)}}
-<div id="modalAjouterVoyageur" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document">
+<div id="modalAjouterUtilisateur" class="modal fade" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document">
 <div class="modal-content">
 	<div class="modal-header" style="background-color: #009688">
 		<h5 class="modal-title">creer un nouveau Utilisateur ou admin</h5>
