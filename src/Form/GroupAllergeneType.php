@@ -14,14 +14,13 @@ class GroupAllergeneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('allergene',EntityType::class,[
-                'class' => Allergene::Class,
+            ->add('allergene', EntityType::class, [
+                'class' => Allergene::class,
                 'choice_label' => 'nom_allergene',
                 'multiple' => 'true',
                 'expanded' => 'true'
             ])
-            ->add('submit',SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

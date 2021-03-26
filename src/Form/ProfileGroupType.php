@@ -15,13 +15,13 @@ class ProfileGroupType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Profils',EntityType::class,[
-                'class' => Profil::Class,
+            ->add('Profils', EntityType::class, [
+                'class' => Profil::class,
                 'choice_label' => 'prenom',
                 'multiple' => 'true',
                 'expanded' => 'true'
             ])
-            ->add('submit',SubmitType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
 

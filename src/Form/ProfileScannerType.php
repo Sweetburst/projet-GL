@@ -17,12 +17,11 @@ class ProfileScannerType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
-           // ->add('allergenes')
+            // ->add('allergenes')
             ->add('activer', CheckboxType::class)
-            ->add('submit',SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
-    
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

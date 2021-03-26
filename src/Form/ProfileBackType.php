@@ -21,11 +21,11 @@ class ProfileBackType extends AbstractType
             ->add('age')
            // ->add('createdAt')
             ->add('user',EntityType::class,[
-                'class' => User::Class,
+                'class' => User::class,
                 'choice_label' => 'nom',
             ])
             ->add('allergenes',EntityType::class,[
-                'class' => Allergene::Class,
+                'class' => Allergene::class,
                 'choice_label' => 'nom_allergene',
                 'multiple' => 'true',
                 'expanded' => 'true'
