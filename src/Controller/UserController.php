@@ -141,12 +141,13 @@ class UserController extends AbstractController
                 $manager->flush(); //delete from  database
             }
         }
-
+        $formsView=[];
         //recuperer les profiles apres la requete pour obtenir les modification realiser
         $profiles = $repository->findby(['user' => $user]);
         //recuper les forms a fficher de chque profile
+        if($profiles){
         $formsView = $this->createManageForms($profiles, "profiles");
-
+        }
         //initaliser le nouveau prof au formRegistration qui permet de creer nouveau profile
         $prof = new Profil(); //profil vide
         //creer formRegistration pour le modal qui permet de creer novueau profil

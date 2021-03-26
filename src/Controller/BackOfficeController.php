@@ -60,17 +60,17 @@ class BackOfficeController extends AbstractController
         if ($types != 'admins' or $types != 'users') {
             // return $this->render('error_page.html.twig');
         }
+        
         $repository = $this->getDoctrine()->getRepository(User::class);
-        if ($types == 'users') {
-            $users = $repository->findBy(['admin' => false]);
-        } else {
-            $users = $repository->findBy(['admin' => true]);
-        }
 
-        if ($requete->request->count() > 0) {
+        if ($requete->request->count() > 1) {
+           // dump($requete->request->count());
+            //dump($requete);
             $userInfo = $requete->request->get('user_back');
-            dump($userInfo);
-            $userTomodifieOrDelete = $repository->find($requete->request->get('id'));
+           // dump($userInfo);
+            if($requete->request->get('id')){
+                $userTomodifieOrDelete = $repository->find($requete->request->get('id'));
+            }
             if (array_key_exists("modifier", $userInfo)) {
                 $userTomodifieOrDelete->setNom($userInfo['nom']);
                 $userTomodifieOrDelete->setPrenom($userInfo['prenom']);
@@ -83,13 +83,17 @@ class BackOfficeController extends AbstractController
                 $manager->flush();
             }
         }
+      
+        if ($types == 'users') {
+            $users = $repository->findBy(['admin' => false]);
+        } else {
+            $users = $repository->findBy(['admin' => true]);
+        }
+        $formsView = [];
+        if ($users) {
+            $formsView = $this->createManageForms($users, $types);
+        }
 
-        //$usersOnly=$repository->findBy(['admin'=> false]);
-        $formsView = $this->createManageForms($users, $types);
-        //dump($this->createManageForms($users,$types,$manager,$requete));
-
-        //geration du formulaire doit etre obligatoirement dans le controller
-        //et n'ont pas dans une function separer pour pouvoir recuperer nouveau data directement
 
         $user = new User(); //utilisateur vide
         //obtenir form pour creer nouveau compte
@@ -97,7 +101,7 @@ class BackOfficeController extends AbstractController
         //different des autre car form de type different que celui utiliser pour l'affichage
         $formRegistration->handleRequest($requete);
         if ($formRegistration->isSubmitted() && $formRegistration->isValid()) {
-            dump($requete);
+          //  dump($requete);
             if (!$user->getId()) {
                 // Si utilisateur pas inscrit on lui attribut une date d'inscription
                 $user->setCreatedAt(new \DateTime());
@@ -212,9 +216,11 @@ class BackOfficeController extends AbstractController
         }
         //apres la requete pour pouvoir obtenir les modification qui ont eu lieu sur la base de donne
         $profiles = $repository->findall(); //get all profile
-
+        $formsView = [];
         //get les form pour les affichage de donner dans le tableau
-        $formsView = $this->createManageForms($profiles, "profiles");
+        if ($profiles) {
+            $formsView = $this->createManageForms($profiles, "profiles");
+        }
         //form de creation nouveau profile
         $prof = new Profil(); //profil vide
         ///form pour la creation d'un nouveau utilisateur
@@ -281,9 +287,12 @@ class BackOfficeController extends AbstractController
         }
         //recuperer tout les allergene 
         $allergenes = $repository->findall();
+        $formsView = [];
+        if ($allergenes) {
+            //get les form pour les affichage de donner dans le tableau
+            $formsView = $this->createManageForms($allergenes, "allergenes");
+        }
 
-        //get les form pour les affichage de donner dans le tableau
-        $formsView = $this->createManageForms($allergenes, "allergenes");
         //form de creation nouveau profile
         $allerg = new Allergene(); //profil vide
         //dump($allerg);//debug

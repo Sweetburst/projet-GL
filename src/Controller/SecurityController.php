@@ -65,7 +65,10 @@ class SecurityController extends AbstractController
     /**
      * login
      * pour la connexion d'un compte utilisateur ou admins
-     * @Route("/connexion", name="security_login",methods={"GET", "POST"})
+     * 
+     * route :/
+     * 
+     * name : security_login
      * @Route("/", name="security_login",methods={"GET", "POST"})
      * @return void
      */
