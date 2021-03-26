@@ -20,8 +20,12 @@ class SecurityController extends AbstractController
        
     /**
      * registration
+     * page creer nouveau utilisateur
+     * 
      * Route :/inscription
+     * 
      * name of Route:security_registration
+     * 
      * @Route("/inscription", name="security_registration")
      * @param  mixed $request pour les requete envoyer en POST ou GET
      * @param  mixed $manager Pour manager la base de donne 
@@ -44,7 +48,7 @@ class SecurityController extends AbstractController
 
             $hash = $encoder->encodePassword($user, $user->getPassword()); //hashage du mdp avec l'algo bcrypt CF fichier Config->Packages->security.yaml
             $user->setPassword($hash);
-            $user->setAdmin(FALSE);
+            $user->setAdmin(FALSE);//compte utilisateur //mettre true pour compte admin
             $manager->persist($user);
             $manager->flush();
 
@@ -60,8 +64,9 @@ class SecurityController extends AbstractController
     
     /**
      * login
-     * pour la connexion d'un compte utilisateur
+     * pour la connexion d'un compte utilisateur ou admins
      * @Route("/connexion", name="security_login",methods={"GET", "POST"})
+     * @Route("/", name="security_login",methods={"GET", "POST"})
      * @return void
      */
     public function login(){

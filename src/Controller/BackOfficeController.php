@@ -5,12 +5,10 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Profil;
 use App\Entity\Allergene;
-use App\Form\ProfileType;
 use App\Form\UserBackType;
 use App\Form\AllergeneType;
 use App\Form\ProfileBackType;
 use App\Form\RegistrationType;
-use App\Form\UserInfoPersonnelleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +23,7 @@ class BackOfficeController extends AbstractController
      * index1
      * Page initial de l'admin 
      * 
-     * Route :/user
+     * Route :/backOffice/test
      * 
      * 
      * name of Route: back_office_test; 
@@ -236,11 +234,13 @@ class BackOfficeController extends AbstractController
     /**
      * backOfficeAllergene
      * 
+     * page admin pour gerer les Allergene
+     * 
      * Route :/back_Office/allergenes
      * 
      * name of Route:back_office_allergene;
      * @Route("/back_Office/allergenes",name="back_office_allergene")
-     * page admin pour gerer les profiles
+     * 
      * @param  mixed $requete get request from page when submiting,...
      * @param  mixed $manager entity manager to work with database
      * @return Response return the page to show

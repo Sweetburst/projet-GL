@@ -8,12 +8,9 @@ use App\Entity\Allergene;
 use App\Form\ProfileType;
 use App\Form\ProfileBackType;
 use App\Form\ProfileGroupType;
-use App\Form\RegistrationType;
-use App\Form\ProfileScannerType;
 use App\Form\UserChangePassType;
 use App\Form\UserInfoPersonnelleType;
 use App\Repository\AllergeneRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +30,7 @@ class UserController extends AbstractController
      * page acceuil de l'utilisateur d'ou il poura naviguer 
      * different fonctionalite du site
      * 
-     * Route :/user
+     * Route :  
      * 
      * name of Route:user;to acces it from twig {{path('user')}}
      * @Route("/user", name="user")
@@ -169,7 +166,7 @@ class UserController extends AbstractController
 
     /**
      * editInformation
-     * page pour gerer information du compte comme changer mot de passe modifier information personnelle
+     *  
      * 
      * Route :/user/account
      *  

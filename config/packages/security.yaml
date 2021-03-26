@@ -41,5 +41,5 @@ security:
         - { path: '^/back_Office', roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-          # require ROLE_USER for /admin*
-        # - { path: '^/user', roles: ROLE_USER }
+          # require ROLE_USER for /user*
+        - { path: '^/user', roles: ROLE_USER }
